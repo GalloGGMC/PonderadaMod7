@@ -13,6 +13,7 @@ Após a configuração dos containers, basta entrar na página "http://localhost
 A ánalise feita nos dados e a justificativa da escolha do modelo se encontra no arquivo "analise_dados.ipynb"
 
 ## Organização do repositório:
+```
 ├── docker-compose.yml
 ├── analise_dados.ipynb
 ├── .gitignore
@@ -32,3 +33,4 @@ A ánalise feita nos dados e a justificativa da escolha do modelo se encontra no
     └── models/
         ├── BTC-USD.h5
         └── ETH-USD.h5
+```
