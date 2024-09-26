@@ -17,7 +17,7 @@ A ánalise feita nos dados e a justificativa da escolha do modelo se encontra no
 ## Frontend + Dashboard:
 
 O possui frontend da aplicação possui 3 tipos de informação: 
-- Dois gráficos interativos (possível dar zoom) da precificação do crypto ativo analizado (Etherium e Bitcoin) nos últimos 5 dias;
+- Dois gráficos interativos (possível dar zoom) da precificação dos crypto ativos analizados (Etherium e Bitcoin) nos últimos 5 dias;
 - As intruções do algoritmo com base na previsão de preços dos crypto ativos feitas pelos modelos (pode ser "Venda", "Compra" ou "Aguarde");
 - Tabela de logs de acesso dos endpoints organizados por data de consulta
 
