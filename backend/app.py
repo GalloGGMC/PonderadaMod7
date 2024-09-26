@@ -34,7 +34,7 @@ def comparator(arr: list, vol:int, coin: str):
     if arr[0] > 0.1 and arr[1] > 0.1 and vol/info[coin]["maxVol"] < 0.1:
         return "Compre"
     
-    elif arr[0] < -0.1 and arr[1] < -0.1 and vol/info[coin]["maxVol"] < 0.2:
+    elif arr[0] < -0.1 and arr[1] < -0.1 and vol/info[coin]["maxVol"] > 0.2:
         return "Venda"
     
     else:
