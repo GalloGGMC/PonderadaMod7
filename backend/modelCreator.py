@@ -16,6 +16,7 @@ def createModel(coin: str):
         info = json.load(openfile)
     info[coin]["max"] = df["Value"].max()
     info[coin]["min"] = df["Value"].min()
+    info[coin]["maxVol"] = df["Volume"].max()
     with open('info.json', 'w') as outfile:
         json.dump(info, outfile)
     df["Value"] = (df["Value"] - df["Value"].min()) / (df["Value"].max() - df["Value"].min())

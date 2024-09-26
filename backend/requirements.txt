@@ -1,0 +1,6 @@
+fastapi[standard]
+keras
+pandas
+tensorflow
+uvicorn
+yfinance

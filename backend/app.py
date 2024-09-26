@@ -27,15 +27,18 @@ def process_data(coin: str):
 
     return [x_p, vol]
 
-def comparator(arr: list, vol:int):
-    if arr[0] > 0.1 and arr[1] > 0.1 and vol/274033664 < 0.1:
-        return "Buy"
+def comparator(arr: list, vol:int, coin: str):
+    with open('info.json', 'r') as openfile:
+        info = json.load(openfile)
+
+    if arr[0] > 0.1 and arr[1] > 0.1 and vol/info[coin]["maxVol"] < 0.1:
+        return "Compre"
     
-    elif arr[0] < -0.1 and arr[1] < -0.1 and vol/274033664 < 0.2:
-        return "Sell"
+    elif arr[0] < -0.1 and arr[1] < -0.1 and vol/info[coin]["maxVol"] < 0.2:
+        return "Venda"
     
     else:
-        return "Hold"
+        return "Aguarde"
     
 app = FastAPI()
 
@@ -53,7 +56,7 @@ def predictETH():
     y = model.predict(X)
     delta = [(X[0][-1] - X[0][-2])*10, (X[0][-1]-y[0][0])*10]
 
-    return comparator(delta, vol)
+    return comparator(delta, vol, "ETH-USD")
 
 @app.get("/btc")
 def predictETH():
@@ -63,13 +66,13 @@ def predictETH():
     log["date"].append(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
     with open('logs.json', 'w') as outfile:
         json.dump(log, outfile)
-        
+
     model = keras.models.load_model("models/BTC-USD.h5")
     X, vol = process_data("BTC-USD")
     y = model.predict(X)
     delta = [(X[0][-1] - X[0][-2])*10, (X[0][-1]-y[0][0])*10]
 
-    return comparator(delta, vol)
+    return comparator(delta, vol, "BTC-USD")
 
 @app.get("/hist_eth")
 def histETH():
@@ -112,9 +115,6 @@ def histBTC():
 @app.get("/logs")
 def logs():
     with open('logs.json', 'r') as openfile:
-        logT = json.load(openfile)
-
-    with open('logs.json', 'r') as openfile:
         log = json.load(openfile)
     log["typeConsult"].append("Logs")
     log["date"].append(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
@@ -122,4 +122,14 @@ def logs():
         json.dump(log, outfile)
 
 
-    return logT
+    return log
+
+with open("retrain.json", "r") as openfile:
+    retrain = json.load(openfile)
+
+if datetime.strptime(retrain["date"], "%d/%m/%Y %H:%M:%S") - datetime.now() > timedelta(days=7):
+    createModel("ETH-USD")
+    createModel("BTC-USD")
+    retrain["date"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    with open("retrain.json", "w") as outfile:
+        json.dump(retrain, outfile)
