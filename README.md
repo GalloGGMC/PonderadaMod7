@@ -14,6 +14,13 @@ OBS: o programa usa as portas 8000 e 8501, portanto, é necessário que ambas as
 
 A ánalise feita nos dados e a justificativa da escolha do modelo se encontra no arquivo "analise_dados.ipynb"
 
+## Frontend + Dashboard:
+
+O possui 3 tipos de informação: 
+- Dois gráficos interativos (possível dar zoom) da precificação do crypto ativo analizado (Etherium e Bitcoin) nos últimos 5 dias;
+- A intrução do modelo sobre a ação a ser feita do crypto ativo (pode ser "Venda", "Compra" ou "Aguarde");
+- Tabela de logs de acesso dos endpoints organizados por data de consulta
+
 ## Organização do repositório:
 ```
 ├── docker-compose.yml
