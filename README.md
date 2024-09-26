@@ -8,6 +8,8 @@ docker-compose up
 ```
 Após a configuração dos containers, basta entrar na página "http://localhost:8501" no navegador de sua escolha
 
+OBS: o programa usa as portas 8000 e 8501, portanto, é necessário que ambas as portas estejam disponíveis
+
 ## Exploração dos dados:
 
 A ánalise feita nos dados e a justificativa da escolha do modelo se encontra no arquivo "analise_dados.ipynb"
